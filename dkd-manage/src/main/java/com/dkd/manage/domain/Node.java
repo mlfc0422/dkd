@@ -28,7 +28,7 @@ public class Node extends BaseEntity
 
     /** 商圈类型 */
     @Excel(name = "商圈类型")
-    private Long businessDistrictType;
+    private Long businessType;
 
     /** 区域ID */
     @Excel(name = "区域ID")
@@ -65,14 +65,14 @@ public class Node extends BaseEntity
     {
         return address;
     }
-    public void setBusinessDistrictType(Long businessDistrictType) 
+    public void setBusinessType(Long businessType)
     {
-        this.businessDistrictType = businessDistrictType;
+        this.businessType = businessType;
     }
 
-    public Long getBusinessDistrictType() 
+    public Long getBusinessType()
     {
-        return businessDistrictType;
+        return businessType;
     }
     public void setRegionId(Long regionId) 
     {
@@ -99,7 +99,7 @@ public class Node extends BaseEntity
             .append("id", getId())
             .append("nodeName", getNodeName())
             .append("address", getAddress())
-            .append("businessDistrictType", getBusinessDistrictType())
+            .append("businessType", getBusinessType())
             .append("regionId", getRegionId())
             .append("partnerId", getPartnerId())
             .append("createTime", getCreateTime())
