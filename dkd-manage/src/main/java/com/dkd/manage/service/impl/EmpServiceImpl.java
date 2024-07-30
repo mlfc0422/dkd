@@ -2,6 +2,9 @@ package com.dkd.manage.service.impl;
 
 import java.util.List;
 import com.dkd.common.utils.DateUtils;
+import com.dkd.manage.domain.Role;
+import com.dkd.manage.mapper.RegionMapper;
+import com.dkd.manage.mapper.RoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.dkd.manage.mapper.EmpMapper;
@@ -12,13 +15,19 @@ import com.dkd.manage.service.IEmpService;
  * 人员列表Service业务层处理
  * 
  * @author mlfc
- * @date 2024-07-25
+ * @date 2024-07-26
  */
 @Service
 public class EmpServiceImpl implements IEmpService 
 {
     @Autowired
     private EmpMapper empMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
+
+    @Autowired
+    private RegionMapper regionMapper;
 
     /**
      * 查询人员列表
@@ -53,6 +62,10 @@ public class EmpServiceImpl implements IEmpService
     @Override
     public int insertEmp(Emp emp)
     {
+        Role role = roleMapper.selectRoleByRoleId(emp.getRoleId());
+        emp.setRoleName(role.getRoleName());
+        emp.setRoleCode(role.getRoleCode());
+        emp.setRegionName(regionMapper.selectRegionById(emp.getRegionId()).getRegionName());
         emp.setCreateTime(DateUtils.getNowDate());
         return empMapper.insertEmp(emp);
     }
@@ -66,6 +79,10 @@ public class EmpServiceImpl implements IEmpService
     @Override
     public int updateEmp(Emp emp)
     {
+        Role role = roleMapper.selectRoleByRoleId(emp.getRoleId());
+        emp.setRoleName(role.getRoleName());
+        emp.setRoleCode(role.getRoleCode());
+        emp.setRegionName(regionMapper.selectRegionById(emp.getRegionId()).getRegionName());
         emp.setUpdateTime(DateUtils.getNowDate());
         return empMapper.updateEmp(emp);
     }

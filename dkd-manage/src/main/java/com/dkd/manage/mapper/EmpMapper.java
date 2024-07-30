@@ -2,12 +2,16 @@ package com.dkd.manage.mapper;
 
 import java.util.List;
 import com.dkd.manage.domain.Emp;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
+
+import javax.validation.GroupSequence;
 
 /**
  * 人员列表Mapper接口
  * 
  * @author mlfc
- * @date 2024-07-25
+ * @date 2024-07-26
  */
 public interface EmpMapper 
 {
@@ -58,4 +62,14 @@ public interface EmpMapper
      * @return 结果
      */
     public int deleteEmpByIds(Long[] ids);
+
+    /**
+     * 更新区域名称
+     *
+     * @param regionName 区域名称
+     * @param regionId 区域主键
+     * @return 结果
+     */
+    @Update("update tb_emp set region_name = #{regionName} where region_id = #{regionId}")
+    public int updateByRegionId(@Param("regionName") String regionName, @Param("regionId") Long regionId);
 }

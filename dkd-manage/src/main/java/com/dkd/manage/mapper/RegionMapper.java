@@ -3,6 +3,7 @@ package com.dkd.manage.mapper;
 import java.util.List;
 import com.dkd.manage.domain.Region;
 import com.dkd.manage.domain.vo.RegionVo;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * 区域管理Mapper接口
@@ -62,4 +63,5 @@ public interface RegionMapper
 
 
     public List<RegionVo> selectRegionVoList(Region region);
+
 }

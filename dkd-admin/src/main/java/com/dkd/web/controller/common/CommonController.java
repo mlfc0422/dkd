@@ -1,9 +1,14 @@
 package com.dkd.web.controller.common;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.dromara.x.file.storage.core.FileInfo;
+import org.dromara.x.file.storage.core.FileStorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +41,9 @@ public class CommonController
     private ServerConfig serverConfig;
 
     private static final String FILE_DELIMETER = ",";
+
+    @Autowired
+    private FileStorageService fileStorageService;//注入实列
 
     /**
      * 通用下载请求
@@ -94,6 +102,29 @@ public class CommonController
             return AjaxResult.error(e.getMessage());
         }
     }
+
+    /**
+     * 通用上传请求(单个)
+     */
+//    @PostMapping("/upload")
+//    public AjaxResult uploadFile(MultipartFile file) throws Exception {
+//
+//        try {
+//            // 指定oss保存文件路径
+//            String objectName = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) + "/";
+//            // 上传图片，成功返回文件信息
+//            FileInfo fileInfo = fileStorageService.of(file).setPath(objectName).upload();
+//            // 设置返回结果
+//            AjaxResult ajax = AjaxResult.success();
+//            ajax.put("url", fileInfo.getUrl());
+//            ajax.put("fileName", fileInfo.getUrl());  //注意：这里的值要改为url，前端访问的地址,需要文件的地址 而不是文件名称
+//            ajax.put("newFileName", fileInfo.getUrl());
+//            ajax.put("originalFilename", file.getOriginalFilename());
+//            return ajax;
+//        } catch (Exception e) {
+//            return AjaxResult.error(e.getMessage());
+//        }
+//    }
 
     /**
      * 通用上传请求（多个）

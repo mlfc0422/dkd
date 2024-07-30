@@ -127,3 +127,17 @@ xss:
   excludes: /system/notice
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
+
+# 文件上传配置
+dromara:
+  x-file-storage: #文件存储配置
+    default-platform: aliyun-oss-1 #默认使用的存储平台
+    aliyun-oss:
+      - platform: aliyun-oss-1 # 存储平台标识
+        enable-storage: true  # 启用存储
+        access-key: ??
+        secret-key: ??
+        end-point: ?? # 地域节点，例如：oss-cn-shanghai.aliyuncs.com
+        bucket-name: ?? # 存储空间名称
+        domain: ?? # 访问域名，注意“/”结尾，例如：https://abc.oss-cn-shanghai.aliyuncs.com/
+        base-path: test/ # 基础路径
